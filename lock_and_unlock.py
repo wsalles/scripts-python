@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
-import os, time
+import os
 
-LOCK=r"\lock\GloboPlayAtemeTar.lock"
-PATH=r"C:\Temp"
+PATH = "/tmp/"
+LOCK = PATH + "GloboPlay.lock"
+
 
 def lock():
 	if os.path.exists(PATH + LOCK):
@@ -10,10 +10,12 @@ def lock():
 		exit()		
 	else:
 		os.makedirs(PATH + LOCK)
-		time.sleep(1)
+
 
 def unlock():
 	os.rmdir(PATH + LOCK)
 
+
+# Getting started
 lock()
 unlock()

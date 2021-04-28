@@ -3,10 +3,12 @@ import os, sys, csv, mysql.connector
 import config.logFile as logFile
 from datetime import datetime
 
+
 # Configuracao BD
 def cfg():
-	conf = {'user' : 'USER', 'password' : 'PASSWORD', 'host' : 'IP_ADDRESS', 'port' : 3306, 'database' : 'mam'}
+	conf = {'user': 'USER', 'password': 'PASSWORD', 'host': 'IP_ADDRESS', 'port': 3306, 'database': 'mam'}
 	return conf
+
 
 def main():
 	sistema = sys.platform[:3]
@@ -21,6 +23,7 @@ def main():
 	#logFile.pastaExiste()
 	logFile.inicializar_logger('./files_exists.csv')
 
+
 def arquivoExiste(p, f):	
 	if os.path.isfile(p + f):
 		#ENCONTRADO, nao precisa imprimir
@@ -28,7 +31,8 @@ def arquivoExiste(p, f):
 	else:
 		logFile.logg.info(p + ';' + f + ';NAO_ENCONTRADO')
 
-#FUNCAO PARA SELECIONAR O PATH A PARTIR DE UMA ESCOLHA
+
+# FUNCAO PARA SELECIONAR O PATH A PARTIR DE UMA ESCOLHA
 def selectPath():
 	while True:
 		opcao = input('>>> ')
@@ -48,10 +52,9 @@ def selectPath():
 			print('Opcao invalida! Selecione de 1 a 4')
 			continue
 		return storage_id, storage_path
-		break
+
 
 def selectTable(uuid):
-	registry_list = []
 	config = cfg()
 	try:
 		conn = mysql.connector.connect(**config)
@@ -82,7 +85,6 @@ def selectTable(uuid):
 		print('[DB] Falha ao fechar o banco')
 		raise e
 	return registry_list
-
 
 
 if __name__ == "__main__":

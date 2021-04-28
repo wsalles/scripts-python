@@ -1,5 +1,5 @@
-#-*- coding: utf-8 -*-
-import sys, os
+import os
+
 
 def percentDisk(path):
         stat = os.statvfs(path)
@@ -9,5 +9,6 @@ def percentDisk(path):
         percent = float(used)/float(total)*100
         p = ("%.2f" % percent)
         return p
+
 
 mount_point = percentDisk("/mnt/exemplo")

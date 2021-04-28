@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import os, glob
 
-path="C:\\Temp\\TesteTar"
-extension="*.txt"
+path = "C:\\Temp\\TesteTar"
+extension = "*.txt"
 
 files = glob.glob(os.path.join(os.getcwd(), path, extension))
 corpus = []

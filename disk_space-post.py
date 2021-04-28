@@ -1,5 +1,7 @@
-#-*- coding: utf-8 -*-
-import sys, os, json, requests
+import os
+import json
+import requests
+
 
 def gerarToken(ip):
 	url = 'http://' + ip + ':3333/auth'
@@ -9,12 +11,14 @@ def gerarToken(ip):
 	meuToken = resposta.json()
 	return meuToken['access_token']
 
+
 def registry(process, ex1, ex2, ip):
-	url = 'http://' + ip ':3333/processes/' + process
+	url = 'http://' + ip + ':3333/processes/' + process
 	token = gerarToken()
 	dados = {'working' : "", 'extras1' : ex1, 'extras2' : ex2}
 	header = {'Authorization' : 'JWT ' + token, "Content-Type": "application/json"}
 	resposta = requests.put(url, data=json.dumps(dados), headers=header)
+
 
 def percentDisk(path):
 	stat = os.statvfs(path)
@@ -23,6 +27,7 @@ def percentDisk(path):
 	used = total-avail
 	percent = float(used)/float(total)*100
 	return percent
+
 
 # Gerando token
 ip = input('>> Digite o IP do REST API: ')
